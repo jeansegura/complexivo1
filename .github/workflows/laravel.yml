@@ -1,4 +1,4 @@
-name: Laravel CI
+name: CI
 
 on:
   push:
@@ -10,36 +10,61 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: ecommerce_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
-      - name: Checkout code
+      - name: Descargar el codigo
         uses: actions/checkout@v4
 
-      - name: Setup PHP
+      - name: Instalar PHP 8.4
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
-          extensions: mbstring, dom, fileinfo, sqlite, pdo_sqlite
+          php-version: '8.4'
+          extensions: pdo_pgsql, pgsql, mbstring, xml, curl, zip, dom, fileinfo
           coverage: none
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
+      - name: Instalar dependencias de Composer
+        run: composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
 
-      - name: Install PHP dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
-
-      - name: Install Node dependencies
-        run: npm ci
-
-      - name: Prepare Laravel
+      - name: Preparar Laravel
         run: |
           cp .env.example .env
           php artisan key:generate
 
-      - name: Build assets
+      - name: Verificar estilo de codigo con Pint
+        run: ./vendor/bin/pint --test
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Instalar dependencias de Node
+        run: npm ci
+
+      - name: Compilar assets
         run: npm run build
 
-      - name: Run tests
+      - name: Ejecutar pruebas
         run: php artisan test
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: ecommerce_test
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
