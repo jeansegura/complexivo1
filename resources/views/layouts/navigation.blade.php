@@ -11,7 +11,14 @@
                        class="rounded-md px-3 py-1.5 transition {{ request()->routeIs('dashboard') ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
                         Inicio
                     </a>
-                    <span class="rounded-md px-3 py-1.5 text-slate-400">Usuarios</span>
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ route('users.index') }}"
+                           class="rounded-md px-3 py-1.5 transition {{ request()->routeIs('users.*') ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+                            Usuarios
+                        </a>
+                    @else
+                        <span class="rounded-md px-3 py-1.5 text-slate-400">Usuarios</span>
+                    @endif
                     <span class="rounded-md px-3 py-1.5 text-slate-400">Entidades</span>
                     <span class="rounded-md px-3 py-1.5 text-slate-400">Objetivos</span>
                     <span class="rounded-md px-3 py-1.5 text-slate-400">Planes</span>
