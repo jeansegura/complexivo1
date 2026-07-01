@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\InstitutionalPlan;
 use App\Models\Permission;
+use App\Models\PlanActivity;
 use App\Models\PublicEntity;
 use App\Models\Role;
 use App\Models\StrategicObjective;
@@ -36,6 +38,10 @@ class DatabaseSeeder extends Seeder
             ['module' => 'objetivos', 'action' => 'crear', 'slug' => 'objetivos.crear'],
             ['module' => 'objetivos', 'action' => 'editar', 'slug' => 'objetivos.editar'],
             ['module' => 'objetivos', 'action' => 'desactivar', 'slug' => 'objetivos.desactivar'],
+            ['module' => 'planes', 'action' => 'ver', 'slug' => 'planes.ver'],
+            ['module' => 'planes', 'action' => 'crear', 'slug' => 'planes.crear'],
+            ['module' => 'planes', 'action' => 'editar', 'slug' => 'planes.editar'],
+            ['module' => 'planes', 'action' => 'desactivar', 'slug' => 'planes.desactivar'],
         ])->map(fn (array $permission) => Permission::firstOrCreate(
             ['slug' => $permission['slug']],
             [
@@ -66,7 +72,7 @@ class DatabaseSeeder extends Seeder
         );
 
         $adminRole->permissions()->sync($permissions->pluck('id')->all());
-        $plannerRole->permissions()->sync($permissions->whereIn('module', ['entidades', 'objetivos'])->pluck('id')->all());
+        $plannerRole->permissions()->sync($permissions->whereIn('module', ['entidades', 'objetivos', 'planes'])->pluck('id')->all());
 
         User::firstOrCreate(
             ['email' => 'test@example.com'],
@@ -90,7 +96,7 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
-        StrategicObjective::firstOrCreate(
+        $objective = StrategicObjective::firstOrCreate(
             [
                 'public_entity_id' => $entity->id,
                 'code' => 'OE-001',
@@ -103,6 +109,37 @@ class DatabaseSeeder extends Seeder
                 'start_year' => 2026,
                 'end_year' => 2029,
                 'status' => StrategicObjective::STATUS_ACTIVE,
+            ],
+        );
+
+        $plan = InstitutionalPlan::firstOrCreate(
+            [
+                'public_entity_id' => $entity->id,
+                'code' => 'PEI-2026',
+            ],
+            [
+                'strategic_objective_id' => $objective->id,
+                'name' => 'Plan Estrategico Institucional 2026',
+                'type' => 'PEI',
+                'description' => 'Plan base para organizar actividades institucionales del periodo.',
+                'start_year' => 2026,
+                'end_year' => 2029,
+                'status' => InstitutionalPlan::STATUS_APPROVED,
+            ],
+        );
+
+        PlanActivity::firstOrCreate(
+            [
+                'institutional_plan_id' => $plan->id,
+                'name' => 'Levantar matriz de planificacion institucional',
+            ],
+            [
+                'description' => 'Actividad inicial para consolidar objetivos, responsables y presupuesto.',
+                'responsible_unit' => 'Direccion de Planificacion',
+                'budget' => 15000,
+                'start_date' => '2026-01-15',
+                'end_date' => '2026-06-30',
+                'status' => PlanActivity::STATUS_IN_PROGRESS,
             ],
         );
     }

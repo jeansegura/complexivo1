@@ -8,29 +8,35 @@
         'subtitle' => 'Base del modulo de planificacion institucional',
     ])
 
-    <div class="grid gap-4 md:grid-cols-4">
+    <div class="grid gap-4 md:grid-cols-5">
         <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 1</p>
             <h2 class="mt-2 text-lg font-bold text-slate-900">Usuarios</h2>
-            <p class="mt-2 text-sm text-slate-600">Registro, filtros y desactivacion sin perder trazabilidad.</p>
+            <p class="mt-2 text-sm text-slate-600">Registro, filtros y desactivacion.</p>
         </section>
 
         <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 2</p>
             <h2 class="mt-2 text-lg font-bold text-slate-900">Roles</h2>
-            <p class="mt-2 text-sm text-slate-600">Roles funcionales, niveles de acceso y permisos por modulo.</p>
+            <p class="mt-2 text-sm text-slate-600">Roles funcionales y permisos por modulo.</p>
         </section>
 
         <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 3</p>
             <h2 class="mt-2 text-lg font-bold text-slate-900">Entidades</h2>
-            <p class="mt-2 text-sm text-slate-600">Instituciones, sectores, tipos y jerarquia institucional.</p>
+            <p class="mt-2 text-sm text-slate-600">Instituciones, sectores y jerarquia.</p>
         </section>
 
         <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 4</p>
             <h2 class="mt-2 text-lg font-bold text-slate-900">Objetivos</h2>
-            <p class="mt-2 text-sm text-slate-600">Objetivos estrategicos vinculados a entidad, PND y ODS.</p>
+            <p class="mt-2 text-sm text-slate-600">Objetivos vinculados a entidad, PND y ODS.</p>
+        </section>
+
+        <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 5</p>
+            <h2 class="mt-2 text-lg font-bold text-slate-900">Planes</h2>
+            <p class="mt-2 text-sm text-slate-600">Planes institucionales y actividades operativas.</p>
         </section>
     </div>
 
@@ -56,7 +62,7 @@
                         ['2', 'Roles y permisos', 'En desarrollo', 'Gestionar roles funcionales y permisos por modulo.'],
                         ['3', 'Entidades publicas', 'En desarrollo', 'Registrar instituciones, sectores y unidades organizacionales.'],
                         ['4', 'Objetivos estrategicos', 'En desarrollo', 'Gestionar objetivos institucionales, PND y ODS.'],
-                        ['5', 'Planes institucionales', 'Pendiente', 'Registrar planes, estados, validaciones y observaciones.'],
+                        ['5', 'Planes institucionales', 'En desarrollo', 'Registrar planes, actividades, estados y presupuestos.'],
                         ['6', 'Auditoria y reportes', 'Pendiente', 'Registrar acciones y generar salidas exportables.'],
                     ] as [$order, $module, $status, $goal])
                         <tr class="transition hover:bg-slate-50/80">

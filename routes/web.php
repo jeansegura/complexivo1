@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InstitutionalPlanController;
+use App\Http\Controllers\PlanActivityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicEntityController;
 use App\Http\Controllers\RoleController;
@@ -20,6 +22,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('entities', PublicEntityController::class);
     Route::resource('objectives', StrategicObjectiveController::class);
+    Route::resource('plans', InstitutionalPlanController::class);
+    Route::resource('plans.activities', PlanActivityController::class)->except(['index', 'show']);
 });
 
 Route::middleware('auth')->group(function () {
