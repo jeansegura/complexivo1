@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicEntityController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StrategicObjectiveController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('entities', PublicEntityController::class);
+    Route::resource('objectives', StrategicObjectiveController::class);
 });
 
 Route::middleware('auth')->group(function () {

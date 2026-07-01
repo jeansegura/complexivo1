@@ -52,6 +52,11 @@
                 'selected' => old('role', $user->role),
             ])
 
+            @include('users.partials.status-select', [
+                'statuses' => $statuses,
+                'selected' => old('status', $user->status),
+            ])
+
             @include('partials.form-actions', [
                 'cancelUrl' => route('users.index'),
                 'submitLabel' => 'Actualizar usuario',

@@ -8,29 +8,29 @@
         'subtitle' => 'Base del modulo de planificacion institucional',
     ])
 
-    <div class="grid gap-4 md:grid-cols-3">
+    <div class="grid gap-4 md:grid-cols-4">
         <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Sprint tecnico</p>
-            <h2 class="mt-2 text-lg font-bold text-slate-900">Estructura base</h2>
-            <p class="mt-2 text-sm text-slate-600">
-                Layout, navegacion y parciales reutilizables siguiendo el estilo definido para el proyecto.
-            </p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 1</p>
+            <h2 class="mt-2 text-lg font-bold text-slate-900">Usuarios</h2>
+            <p class="mt-2 text-sm text-slate-600">Registro, filtros y desactivacion sin perder trazabilidad.</p>
         </section>
 
         <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Siguiente modulo</p>
-            <h2 class="mt-2 text-lg font-bold text-slate-900">Usuarios y roles</h2>
-            <p class="mt-2 text-sm text-slate-600">
-                La primera funcionalidad del dominio sera la administracion de acceso institucional.
-            </p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 2</p>
+            <h2 class="mt-2 text-lg font-bold text-slate-900">Roles</h2>
+            <p class="mt-2 text-sm text-slate-600">Roles funcionales, niveles de acceso y permisos por modulo.</p>
         </section>
 
         <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Control de calidad</p>
-            <h2 class="mt-2 text-lg font-bold text-slate-900">Workflow activo</h2>
-            <p class="mt-2 text-sm text-slate-600">
-                Cada avance debe pasar por instalacion, estilo, assets y pruebas automatizadas.
-            </p>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 3</p>
+            <h2 class="mt-2 text-lg font-bold text-slate-900">Entidades</h2>
+            <p class="mt-2 text-sm text-slate-600">Instituciones, sectores, tipos y jerarquia institucional.</p>
+        </section>
+
+        <section class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Epica 4</p>
+            <h2 class="mt-2 text-lg font-bold text-slate-900">Objetivos</h2>
+            <p class="mt-2 text-sm text-slate-600">Objetivos estrategicos vinculados a entidad, PND y ODS.</p>
         </section>
     </div>
 
@@ -46,20 +46,23 @@
                     <tr>
                         <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Orden</th>
                         <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Modulo</th>
+                        <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Estado</th>
                         <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Objetivo</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @foreach ([
-                        ['1', 'Usuarios y roles', 'Definir acceso, permisos y base de seguridad.'],
-                        ['2', 'Entidades publicas', 'Registrar instituciones, sectores y unidades organizacionales.'],
-                        ['3', 'Objetivos estrategicos', 'Gestionar objetivos institucionales, PND y ODS.'],
-                        ['4', 'Planes institucionales', 'Registrar planes, estados, validaciones y observaciones.'],
-                        ['5', 'Auditoria y reportes', 'Registrar acciones y generar salidas exportables.'],
-                    ] as [$order, $module, $goal])
+                        ['1', 'Usuarios institucionales', 'En desarrollo', 'Definir acceso, consulta, actualizacion y desactivacion.'],
+                        ['2', 'Roles y permisos', 'En desarrollo', 'Gestionar roles funcionales y permisos por modulo.'],
+                        ['3', 'Entidades publicas', 'En desarrollo', 'Registrar instituciones, sectores y unidades organizacionales.'],
+                        ['4', 'Objetivos estrategicos', 'En desarrollo', 'Gestionar objetivos institucionales, PND y ODS.'],
+                        ['5', 'Planes institucionales', 'Pendiente', 'Registrar planes, estados, validaciones y observaciones.'],
+                        ['6', 'Auditoria y reportes', 'Pendiente', 'Registrar acciones y generar salidas exportables.'],
+                    ] as [$order, $module, $status, $goal])
                         <tr class="transition hover:bg-slate-50/80">
                             <td class="px-5 py-4 font-medium text-slate-900">{{ $order }}</td>
                             <td class="px-5 py-4 text-slate-700">{{ $module }}</td>
+                            <td class="px-5 py-4 text-slate-600">{{ $status }}</td>
                             <td class="px-5 py-4 text-slate-600">{{ $goal }}</td>
                         </tr>
                     @endforeach

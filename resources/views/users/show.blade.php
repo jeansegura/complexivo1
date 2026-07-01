@@ -27,6 +27,10 @@
                 <dd class="mt-2">@include('users.partials.role-badge', ['user' => $user])</dd>
             </div>
             <div>
+                <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">Estado</dt>
+                <dd class="mt-2">@include('users.partials.status-badge', ['user' => $user])</dd>
+            </div>
+            <div>
                 <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">Registrado</dt>
                 <dd class="mt-1 text-sm font-medium text-slate-900">{{ $user->created_at?->format('d/m/Y H:i') }}</dd>
             </div>

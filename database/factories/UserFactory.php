@@ -31,6 +31,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'role' => User::ROLE_PLANNER,
+            'status' => User::STATUS_ACTIVE,
         ];
     }
 
@@ -62,6 +63,13 @@ class UserFactory extends Factory
     {
         return $this->state(fn () => [
             'role' => User::ROLE_PLANNER,
+        ]);
+    }
+
+    public function inactive(): static
+    {
+        return $this->state(fn () => [
+            'status' => User::STATUS_INACTIVE,
         ]);
     }
 }

@@ -15,12 +15,12 @@
 
     @if (!empty($destroyUrl))
         <form action="{{ $destroyUrl }}" method="POST" class="inline"
-              onsubmit="return confirm('{{ $confirmMessage ?? 'Eliminar este registro?' }}')">
+              onsubmit="return confirm('{{ $confirmMessage ?? 'Desactivar este registro?' }}')">
             @csrf
             @method('DELETE')
             <button type="submit"
                     class="rounded-md px-2.5 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50">
-                Eliminar
+                {{ $destroyLabel ?? 'Desactivar' }}
             </button>
         </form>
     @endif

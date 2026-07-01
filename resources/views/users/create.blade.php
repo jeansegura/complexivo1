@@ -53,6 +53,11 @@
                 'selected' => old('role'),
             ])
 
+            @include('users.partials.status-select', [
+                'statuses' => $statuses,
+                'selected' => old('status', \App\Models\User::STATUS_ACTIVE),
+            ])
+
             @include('partials.form-actions', [
                 'cancelUrl' => route('users.index'),
                 'submitLabel' => 'Guardar usuario',

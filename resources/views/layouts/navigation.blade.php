@@ -16,11 +16,24 @@
                            class="rounded-md px-3 py-1.5 transition {{ request()->routeIs('users.*') ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
                             Usuarios
                         </a>
+                        <a href="{{ route('roles.index') }}"
+                           class="rounded-md px-3 py-1.5 transition {{ request()->routeIs('roles.*') ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+                            Roles
+                        </a>
+                        <a href="{{ route('entities.index') }}"
+                           class="rounded-md px-3 py-1.5 transition {{ request()->routeIs('entities.*') ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+                            Entidades
+                        </a>
+                        <a href="{{ route('objectives.index') }}"
+                           class="rounded-md px-3 py-1.5 transition {{ request()->routeIs('objectives.*') ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+                            Objetivos
+                        </a>
                     @else
                         <span class="rounded-md px-3 py-1.5 text-slate-400">Usuarios</span>
+                        <span class="rounded-md px-3 py-1.5 text-slate-400">Roles</span>
+                        <span class="rounded-md px-3 py-1.5 text-slate-400">Entidades</span>
+                        <span class="rounded-md px-3 py-1.5 text-slate-400">Objetivos</span>
                     @endif
-                    <span class="rounded-md px-3 py-1.5 text-slate-400">Entidades</span>
-                    <span class="rounded-md px-3 py-1.5 text-slate-400">Objetivos</span>
                     <span class="rounded-md px-3 py-1.5 text-slate-400">Planes</span>
                     <span class="rounded-md px-3 py-1.5 text-slate-400">Reportes</span>
                 </div>
